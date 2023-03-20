@@ -6,7 +6,7 @@ StudentNode::StudentNode(Student& value) {
 }
 
 StudentNode::~StudentNode() {
-
+	delete this->value;
 }
 
 Student* StudentNode::getValue() {

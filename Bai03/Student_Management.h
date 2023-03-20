@@ -21,10 +21,12 @@ public:
 
 	void readListOfStudentFromFile(string);
 	void writeListOfStudentToFile(string);
+	void findStudentAvgLessThanClassAvg(string);
 
 	void add(Student&);
 	void print();
-	void update();
-	void rating();
+	void update(string);
+	void printWithRating();
+	string rating(Student*);
 };
 
