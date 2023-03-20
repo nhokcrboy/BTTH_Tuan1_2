@@ -15,6 +15,50 @@ Student::Student()
 	_avgMark = 0;
 }
 
+Student::Student(const Student& student) {
+	char* temp = new char[strlen(student._name) + 1];
+	strcpy(temp, student._name);
+	delete[] this->_name;
+	this->_name = temp;
+
+	temp = new char[strlen(student._id) + 1];
+	strcpy(temp, student._id);
+	delete[] this->_id;
+	this->_id = temp;
+
+	temp = new char[strlen(student._dateOfBirth) + 1];
+	strcpy(temp, student._dateOfBirth);
+	delete[] this->_dateOfBirth;
+	this->_dateOfBirth = temp;
+
+	this->_mark[0] = student._mark[0];
+	this->_mark[1] = student._mark[1];
+	this->_mark[2] = student._mark[2];
+	this->_avgMark = student._avgMark;
+}
+
+void Student::operator= (const Student & student) {
+	char* temp = new char[strlen(student._name) + 1];
+	strcpy(temp, student._name);
+	delete[] this->_name;
+	this->_name = temp;
+
+	temp = new char[strlen(student._id) + 1];
+	strcpy(temp, student._id);
+	delete[] this->_id;
+	this->_id = temp;
+
+	temp = new char[strlen(student._dateOfBirth) + 1];
+	strcpy(temp, student._dateOfBirth);
+	delete[] this->_dateOfBirth;
+	this->_dateOfBirth = temp;
+
+	this->_mark[0] = student._mark[0];
+	this->_mark[1] = student._mark[1];
+	this->_mark[2] = student._mark[2];
+	this->_avgMark = student._avgMark;
+}
+
 Student::~Student()
 {
 	delete[] _name;
@@ -36,6 +80,22 @@ string Student::getDateOfBirth()
 	return _dateOfBirth;
 }
 
+float Student::getAvgPoint() {
+	return this->_avgMark;
+}
+
+float Student::getMarkBT() {
+	return this->_mark[score["BT"]];
+}
+
+float Student::getMarkGK() {
+	return this->_mark[score["GK"]];
+}
+
+float Student::getMarkCK() {
+	return this->_mark[score["CK"]];
+}
+
 string Student::toStr()
 {
 	stringstream builder;
@@ -47,22 +107,25 @@ string Student::toStr()
 
 void Student::setName(string name)
 {
-	stringstream builder;
-	builder << name;
-	builder.getline(_name, name.size());
+	char* temp = new char[name.length() + 1];
+	strcpy(temp,name.c_str());
+	delete[] this->_name;
+	this->_name = temp;
 }
 void Student::setId(string id)
 {
-	stringstream builder;
-	builder << id;
-	builder.getline(_id, id.size());
+	char* temp = new char[id.length() + 1];
+	strcpy(temp, id.c_str());
+	delete[] this->_id;
+	this->_id = temp;
 }
 
 void Student::setDateOfBirth(string dateOfBirth)
 {
-	stringstream builder;
-	builder << dateOfBirth;
-	builder.getline(_dateOfBirth, dateOfBirth.size());
+	char* temp = new char[dateOfBirth.length() + 1];
+	strcpy(temp, dateOfBirth.c_str());
+	delete[] this->_dateOfBirth;
+	this->_dateOfBirth = temp;
 }
 
 void Student::input()
@@ -143,20 +206,48 @@ void Student::print()
 	cout << _mark[0] << " " << _mark[1] << " " << _mark[2];
 }
 
-Student Student::copy(const Student &a)
-{
-	strcpy(_name, a._name);
-	strcpy(_id, a._id);
-	strcpy(_dateOfBirth, a._dateOfBirth);
-
-	_mark[0] = a._mark[0];
-	_mark[1] = a._mark[1];
-	_mark[2] = a._mark[2];
-
-	_avgMark = a._avgMark;
+void Student::setMarkBT(float mark) {
+	this->_mark[0] = mark;
 }
 
-Student Student::create(string name, string id, string dateOfBirth, float* mark)
-{
-	
+void Student::setMarkGK(float mark) {
+	this->_mark[1] = mark;
 }
+
+void Student::setMarkCK(float mark) {
+	this->_mark[2] = mark;
+}
+
+void Student::setAvgMark(float mark) {
+	this->_avgMark = mark;
+}
+
+void Student::copy(Student &student)
+{
+	char* temp = new char[strlen(student._name) + 1];
+	strcpy(temp, student._name);
+	delete[] this->_name;
+	this->_name = temp;
+
+	temp = new char[strlen(student._id) + 1];
+	strcpy(temp, student._id);
+	delete[] this->_id;
+	this->_id = temp;
+
+	temp = new char[strlen(student._dateOfBirth) + 1];
+	strcpy(temp, student._dateOfBirth);
+	delete[] this->_dateOfBirth;
+	this->_dateOfBirth = temp;
+
+	this->_id = student._id;
+	this->_dateOfBirth = student._dateOfBirth;
+	this->_mark[0] = student._mark[0];
+	this->_mark[1] = student._mark[1];
+	this->_mark[2] = student._mark[2];
+	this->_avgMark = student._avgMark;
+}
+//
+//Student Student::create(string name, string id, string dateOfBirth, float* mark)
+//{
+//	
+//}

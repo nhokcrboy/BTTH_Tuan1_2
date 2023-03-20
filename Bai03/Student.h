@@ -1,4 +1,5 @@
 ﻿#pragma once
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -9,8 +10,8 @@ class Student
 {
 private:
 	map<string, int> score = {
-		{"BT", 1},
-		{"GK", 2},
+		{"BT", 0},
+		{"GK", 1},
 		{"CK", 2}
 	};
 
@@ -21,20 +22,30 @@ private:
 	float _avgMark;		// stdAvg = baitap*0.25 + giuaky*0.25 + cuoiky*0.5
 public:
 	Student();
+	Student(const Student&);
 	~Student();
 public:
 	string getName();
 	string getId();
 	string getDateOfBirth();
 	string toStr();
+	float getAvgPoint();
+	float getMarkBT();
+	float getMarkGK();
+	float getMarkCK();
 
 	void setName(string);
 	void setId(string);
 	void setDateOfBirth(string);
+	void setMarkBT(float);
+	void setMarkGK(float);
+	void setMarkCK(float);
+	void setAvgMark(float);
 public:
 	void input();
 	void print();
 public:
-	Student copy(const Student& a);
-	Student create(string name, string id, string dateOfBirth, float* mark);
+	void operator= (const Student&);
+	void copy(Student& a);
+	//Student create(string name, string id, string dateOfBirth, float* mark);
 };

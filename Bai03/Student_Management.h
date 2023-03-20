@@ -1,13 +1,16 @@
 #pragma once
 #include "Student.h"
+#include "StudentNode.h"
 #include <string>
 #include <iostream>
+#include <fstream>
+#include <sstream>
 using namespace std;
 
 class Student_Management
 {
 private:
-	Student* DSSV;
+	StudentNode* DSSV; // DanhSachLienKet Only pHead
 	int count;
 public:
 	Student_Management();
@@ -16,10 +19,11 @@ public:
 	int getNumberStudent();
 	float avgPoint();
 
-	void readListOfStudentFromFile();
-	void writeListOfStudentToFile();
+	void readListOfStudentFromFile(string);
+	void writeListOfStudentToFile(string);
 
-	void add();
+	void add(Student&);
+	void print();
 	void update();
 	void rating();
 };
